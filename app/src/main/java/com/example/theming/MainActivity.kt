@@ -3,13 +3,13 @@ package com.example.theming
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.theming.ui.theme.ThemingTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,22 +22,46 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    ThemingApp()
                 }
             }
         }
     }
 }
-
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun ThemingApp()
+{
+    val appModifier = Modifier
+        .fillMaxWidth()
+        .padding(8.dp)
+    Column(
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    )
+    {
+        Text(
+            text = "My title",
+            style = MaterialTheme.typography.h5,
+            modifier = appModifier
+        )
+        OutlinedTextField(
+            value = "",
+            onValueChange ={/**/} ,
+            modifier = appModifier
+        )
+        Button(onClick = { /*TODO*/ }, modifier = appModifier) {
+            Text(text = "Submit")
+
+
+        }
+
+    }
 }
+
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     ThemingTheme {
-        Greeting("Android")
+        ThemingApp()
     }
 }
